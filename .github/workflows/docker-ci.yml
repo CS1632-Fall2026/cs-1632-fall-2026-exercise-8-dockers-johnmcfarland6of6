@@ -32,7 +32,11 @@ jobs:
 
       - name: Launch Web Service
         run: docker compose up -d
-
+        
+      - name: Wait for Web Server
+        run: sh wait-for-webserver.sh
+        timeout-minutes: 5
+        
       - name: Run Playwright Tests
         run: npx playwright test --project=chromium
 
